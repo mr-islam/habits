@@ -25,7 +25,7 @@ struct HabitsView: View {
             List {
                 GeometryReader { geometry in
                     HStack(spacing: 0) {
-                        Text("Name")
+                        Text("")
                             .frame(width: 0.6 * geometry.size.width, alignment: .leading)
                             .font(.subheadline)
                         let dates = Date.past(4, .day)
