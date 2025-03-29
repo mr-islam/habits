@@ -20,6 +20,7 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [ ] Support landscape with extra days displayed (or maybe make the number of day a dynamic thing based on screen size)
 - [ ] Icon
 - [ ] App title and branding
+- [ ] add delete habit function (on edit page)
 
 ### Later
 - [ ] Add filters for the habits (archived or not, not done today or not)
@@ -35,6 +36,7 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [ ] See feature requests on the Loop repo
 - [ ] Theming system
 - [ ] Icon options
+- [ ] Handle making black text white in dark mode
 
 ## Completed
 - [x] Update README
@@ -42,6 +44,7 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [x] Fix the dates newline on main screen
 - [x] Set it to be 5 days on portait (or dynamic?)
 - [x] Make the Main title "Habits" nicer
+- [x] Fix dark mode text being black
 
 ## License
 
