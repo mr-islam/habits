@@ -13,6 +13,7 @@ struct HabitsView: View {
             HStack {
                 Text("Habits")
                     .font(.title)
+                    .fontWeight(.bold)
                     .padding(.leading)
                 Spacer()
                 Button(action: {
