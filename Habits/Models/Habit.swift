@@ -4,7 +4,7 @@ import SwiftUI
 struct Habit: Identifiable, Codable {
     let id: UUID
     var name: String = ""
-    var color: CodableColor = CodableColor(color: .black)
+    var color: CodableColor = CodableColor(color: .indigo)
     var entries: [Date : Entry] = [:]
     
     init(id: UUID = UUID()) {
