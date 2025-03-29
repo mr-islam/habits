@@ -3,6 +3,7 @@ import SwiftUI
 struct HabitsView: View {
     @State private var isPresentingNewHabitView = false
     @State private var newHabit = Habit()
+    @State private var isPresentingSettingsView = false
     @Binding var habits: [Habit]
 
     @Environment(\.scenePhase) private var scenePhase
@@ -16,6 +17,12 @@ struct HabitsView: View {
                     .fontWeight(.bold)
                     .padding(.leading)
                 Spacer()
+                Button(action: {
+                    isPresentingSettingsView = true
+                }) {
+                    Image(systemName: "gearshape").imageScale(.large)
+                }
+                .padding(.trailing, 8)
                 Button(action: {
                     isPresentingNewHabitView = true
                 }) {
@@ -70,6 +77,18 @@ struct HabitsView: View {
                                 habits.append(newHabit)
                                 isPresentingNewHabitView = false
                                 newHabit = Habit()
+                            }
+                        }
+                    }
+            }
+        }
+        .sheet(isPresented: $isPresentingSettingsView) {
+            NavigationView {
+                            SettingsView2() // Replace with actual settings view
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Done") {
+                                isPresentingNewHabitView = false
                             }
                         }
                     }
