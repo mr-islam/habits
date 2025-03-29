@@ -26,9 +26,9 @@ struct HabitsView: View {
                 GeometryReader { geometry in
                     HStack(spacing: 0) {
                         Text("")
-                            .frame(width: 0.6 * geometry.size.width, alignment: .leading)
+                            .frame(width: 0.5 * geometry.size.width, alignment: .leading)
                             .font(.subheadline)
-                        let dates = Date.past(4, .day)
+                        let dates = Date.past(5, .day)
                         ForEach(dates.indices, id: \.self) { i in
                             if i != 0 {
                                 Divider()

@@ -12,9 +12,9 @@ struct HabitSummaryView: View {
                 Spacer()
                 HStack(spacing: 0) {
                     Text("\(habit.name)")
-                        .frame(width: 0.6 * geometry.size.width, alignment: .leading)
+                        .frame(width: 0.5 * geometry.size.width, alignment: .leading)
 
-                    ForEach(Date.past(4, .day), id: \.self) { date in
+                    ForEach(Date.past(5, .day), id: \.self) { date in
                         Image(systemName: getIconOrDefault(date))
                             .frame(width: 0.1 * geometry.size.width)
                             .onTapGesture {
