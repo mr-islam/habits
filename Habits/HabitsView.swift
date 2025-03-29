@@ -33,10 +33,14 @@ struct HabitsView: View {
                             if i != 0 {
                                 Divider()
                             }
-                            Text("\(dates[i].weekdayName)\n\(dates[i].get(.day))")
-                                .frame(width: 0.1 * geometry.size.width)
-                                .multilineTextAlignment(.center)
-                                .font(.footnote)
+                            VStack {
+                                Text(dates[i].weekdayName.prefix(3))
+                                    .font(.footnote)
+                                Text("\(dates[i].get(.day))")
+                                    .font(.caption)
+                            }
+                            .frame(width: 0.1 * geometry.size.width)
+                            .multilineTextAlignment(.center)
                         }
                     }
                     .foregroundColor(.gray)
