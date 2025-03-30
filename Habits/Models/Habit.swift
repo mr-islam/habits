@@ -7,6 +7,9 @@ struct Habit: Identifiable, Codable {
     var color: CodableColor = CodableColor(color: .indigo)
     var entries: [Date : Entry] = [:]
     
+    var notificationsEnabled: Bool = false
+    var notificationTime: Date? = nil // Store optional Date, we only care about time component
+    
     init(id: UUID = UUID()) {
         self.id = id
     }
@@ -20,6 +23,9 @@ struct Habit: Identifiable, Codable {
     mutating func update(from habit: Habit) {
         name = habit.name
         color = habit.color
+        notificationsEnabled = habit.notificationsEnabled
+        notificationTime = habit.notificationTime
+        // Do NOT update entries or id
     }
     
     mutating func addEntry(date: Date) {

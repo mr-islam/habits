@@ -12,14 +12,15 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 
 ## New Plans
 ### Core
-- [ ] Notifications for habits
 - [ ] Add tests
+- [ ] fix the errors when running the dev build
 - [ ] Support landscape with extra days displayed (or maybe make the number of day a dynamic thing based on screen size)
 - [ ] Gentle haptic feedback for check, and another for uncheck
 - [ ] Add filters for the habits (archived or not, not done today or not)
 - [ ] move completed habits to bottom
 - [ ] upload to app store
 - [ ] import and export habit data
+- [ ] make the xs smaller and non colored, like loop
 
 ### Later
 - [ ] Localization support i18n
@@ -34,6 +35,9 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [ ] Fill in about info on settings page
 - [ ] move to sufone org on github 
 - [ ] Archived habit support
+- [ ] allow for custom notification text
+- [ ] dark mode icon
+- [ ] app splash screen
 
 ### Really later
 - [ ] compatibility with loop habit data format
@@ -58,6 +62,7 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [x] Icon
 - [x] App title and branding
 - [x] Options screen and about together
+- [x] Simple Notifications for habits
 
 ## License
 
