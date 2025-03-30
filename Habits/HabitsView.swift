@@ -8,61 +8,77 @@ struct HabitsView: View {
 
     @Environment(\.scenePhase) private var scenePhase
     let saveAction: () -> Void
+    
+    @AppStorage(Constants.Settings.datesAppearReversedKey) private var datesAppearReversed: Bool = false
 
-    var body: some View {
-        VStack() {
-            HStack {
-                Text("Habits")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .padding(.leading)
-                Spacer()
-                Button(action: {
-                    isPresentingSettingsView = true
-                }) {
-                    Image(systemName: "gearshape").imageScale(.large)
+    // Proportions
+        private let nameColumnProportion: CGFloat = 0.5
+        private let dateColumnProportion: CGFloat = 0.1
+        private let dateColumnCount: Int = 5
+        private let horizontalListPadding: CGFloat = 18
+
+        var body: some View {
+            VStack(spacing: 0) {
+                // --- Top Header (Title, Buttons) ---
+                HStack {
+                    Text("Habits").font(.title).fontWeight(.bold)
+                    Spacer()
+                    Button(action: { isPresentingSettingsView = true }) { Image(systemName: "gearshape").imageScale(.large) }
+                    Button(action: { isPresentingNewHabitView = true }) { Image(systemName: "plus").imageScale(.large) }
                 }
-                .padding(.trailing, 8)
-                Button(action: {
-                    isPresentingNewHabitView = true
-                }) {
-                    Image(systemName: "plus").imageScale(.large)
-                }
-                .padding(.trailing)
-            }
-            List {
-                GeometryReader { geometry in
-                    HStack(spacing: 0) {
-                        Text("")
-                            .frame(width: 0.5 * geometry.size.width, alignment: .leading)
-                            .font(.subheadline)
-                        let dates = Date.past(5, .day)
-                        ForEach(dates.indices, id: \.self) { i in
-                            if i != 0 {
-                                Divider()
+                .padding(.horizontal, horizontalListPadding) // Apply consistent horizontal padding
+                .padding(.bottom, 5)
+
+                // --- List Area ---
+                List {
+                    // --- Section for the Date Header ---
+                    Section {
+                        GeometryReader { geometry in
+                            HStack(spacing: 0) {
+                                Color.clear // Use Clear Color to take up space reliably
+                                    .frame(width: geometry.size.width * nameColumnProportion)
+
+                                // Date Columns
+                                let baseDates = Date.past(dateColumnCount, .day)
+                                let displayDates = datesAppearReversed ? baseDates.reversed() : baseDates
+
+                                ForEach(displayDates.indices, id: \.self) { i in
+                                    if i != 0 { Divider().frame(maxHeight: 25).padding(.vertical, 4) } // Slightly shorter divider
+                                    VStack {
+                                        Text(displayDates[i].weekdayName.prefix(3)).font(.footnote)
+                                        Text("\(displayDates[i].get(.day))").font(.caption)
+                                    }
+                                    .frame(width: geometry.size.width * dateColumnProportion) // Use proportion
+                                    .multilineTextAlignment(.center)
+                                }
                             }
-                            VStack {
-                                Text(dates[i].weekdayName.prefix(3))
-                                    .font(.footnote)
-                                Text("\(dates[i].get(.day))")
-                                    .font(.caption)
-                            }
-                            .frame(width: 0.1 * geometry.size.width)
-                            .multilineTextAlignment(.center)
+                            .foregroundColor(.gray)
+                            .frame(height: geometry.size.height)
                         }
+                        .frame(height: 35)
+                        .padding(.horizontal, horizontalListPadding) // <<< Apply padding HERE
+                        .listRowInsets(EdgeInsets())
+                        .padding(.vertical, 5)
+
+
                     }
-                    .foregroundColor(.gray)
+
+                    // --- Section for Habits ---
+                    Section {
+                        ForEach($habits) { $habit in
+                             HabitSummaryView(habit: $habit, datesAppearReversed: datesAppearReversed)
+                                 .padding(.horizontal, horizontalListPadding) 
+                                 .background(
+                                     NavigationLink("", destination: HabitDetailView(habit: $habit, onDeleteHabit: deleteHabit))
+                                         .opacity(0.0) // Keep NavLink hidden
+                                 )
+                                 .listRowInsets(EdgeInsets()) // <<< Remove default list insets
+                        }
+                        .onMove(perform: move)
+                    } // End Section for Habits
                 }
-                
-                ForEach($habits) { $habit in
-                    HabitSummaryView(habit: $habit)
-                        // Pass the deleteHabit function here
-                        .background(NavigationLink("", destination: HabitDetailView(habit: $habit, onDeleteHabit: deleteHabit)).opacity(0.0))
-                }
-                .onMove(perform: move)
+                .listStyle(PlainListStyle())
             }
-            .listStyle(PlainListStyle())
-        }
         .sheet(isPresented: $isPresentingNewHabitView) {
             NavigationView {
                 HabitEditView(habit: $newHabit, onDelete: nil)
@@ -88,11 +104,11 @@ struct HabitsView: View {
         }
         .sheet(isPresented: $isPresentingSettingsView) {
              NavigationView {
-                 SettingsView2() // Replace with actual settings view
+                 SettingsView2()
                      .toolbar {
                          ToolbarItem(placement: .confirmationAction) {
                              Button("Done") {
-                                 isPresentingSettingsView = false // Corrected state variable
+                                 isPresentingSettingsView = false 
                              }
                          }
                      }

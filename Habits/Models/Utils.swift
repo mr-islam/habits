@@ -45,18 +45,24 @@ extension Date {
 
     static func past(_ count: Int, _ component: Calendar.Component) -> [Date] {
         let today = Date()
-        var entries: [Date] = []
-        for index in 0...count - 1 {
-            let date = component == .quarter 
-                ? Calendar.current.date(byAdding: .month, value: -index*3, to: today)!.startOfQuarter // workaround for unimplemented quarter component
-                : Calendar.current.date(byAdding: component, value: -index, to: today)!
-            entries.append(date)
+        return (0..<count).compactMap { index in // Use compactMap to automatically handle/discard nil results
+            if component == .quarter {
+                 // Optional chaining for startOfQuarter calculation
+                return Calendar.current.date(byAdding: .month, value: -index * 3, to: today)?.startOfQuarter
+            } else {
+                return Calendar.current.date(byAdding: component, value: -index, to: today)
+            }
         }
-        return entries
     }
 
     var withoutTime: Date {
         return Calendar.current.startOfDay(for: self)
     }
 
+}
+
+struct Constants {
+    struct Settings {
+        static let datesAppearReversedKey = "datesAppearReversed" // Key for UserDefaults
+    }
 }

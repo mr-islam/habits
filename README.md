@@ -15,7 +15,6 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [ ] Notifications for habits
 - [ ] Add tests
 - [ ] Compare to Loop and see core features that are necessary
-- [ ] Support reversing of days (ie. the latest day on the right)
 - [ ] Support landscape with extra days displayed (or maybe make the number of day a dynamic thing based on screen size)
 - [ ] Icon
 - [ ] App title and branding
@@ -39,6 +38,7 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [ ] Theming system
 - [ ] Icon options
 - [ ] Handle making black text white in dark mode
+- [ ] Show circle on left of habit as it's score/health, like loop
 
 ## Completed
 - [x] Update README
@@ -48,6 +48,7 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [x] Make the Main title "Habits" nicer
 - [x] Fix dark mode text being black
 - [x] add delete habit function (on edit page)
+- [x] Support reversing of days (ie. the latest day on the right)
 
 ## License
 
