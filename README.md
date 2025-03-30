@@ -14,30 +14,35 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 ### Core
 - [ ] Notifications for habits
 - [ ] Add tests
-- [ ] Compare to Loop and see core features that are necessary
 - [ ] Support landscape with extra days displayed (or maybe make the number of day a dynamic thing based on screen size)
-- [ ] App title and branding
 - [ ] Gentle haptic feedback for check, and another for uncheck
+- [ ] Add filters for the habits (archived or not, not done today or not)
+- [ ] move completed habits to bottom
+- [ ] upload to app store
+- [ ] import and export habit data
 
 ### Later
-- [ ] Add filters for the habits (archived or not, not done today or not)
 - [ ] Localization support i18n
 - [ ] Custom number habits not just binary
 - [ ] Skip support for habit instance
-- [ ] Options screen and about together
 - [ ] Fix calendar on habit details screen
 - [ ] Handle onboarding with epxlanations
 - [ ] Handle empty habits screen (ie. no habits) - maybe start with sample habit?
 - [ ] Update screenshots
 - [ ] Prep for app store
 - [ ] Better icon with subha concept
+- [ ] Fill in about info on settings page
+- [ ] move to sufone org on github 
+- [ ] Archived habit support
 
 ### Really later
+- [ ] compatibility with loop habit data format
 - [ ] Support archiving habits
 - [ ] Habit groups
+- [ ] Compare to Loop and see core features that are necessary
 - [ ] See feature requests on the Loop repo
 - [ ] Theming system
-- [ ] Icon options
+- [ ] Icon options and choices (premium maybe? cosmetic things only)
 - [ ] Handle making black text white in dark mode
 - [ ] Show circle on left of habit as it's score/health, like loop
 
@@ -51,6 +56,8 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [x] add delete habit function (on edit page)
 - [x] Support reversing of days (ie. the latest day on the right)
 - [x] Icon
+- [x] App title and branding
+- [x] Options screen and about together
 
 ## License
 
