@@ -56,7 +56,8 @@ struct HabitsView: View {
                 
                 ForEach($habits) { $habit in
                     HabitSummaryView(habit: $habit)
-                        .background(NavigationLink("", destination: HabitDetailView(habit: $habit)).opacity(0.0))
+                        // Pass the deleteHabit function here
+                        .background(NavigationLink("", destination: HabitDetailView(habit: $habit, onDeleteHabit: deleteHabit)).opacity(0.0))
                 }
                 .onMove(perform: move)
             }
@@ -64,36 +65,41 @@ struct HabitsView: View {
         }
         .sheet(isPresented: $isPresentingNewHabitView) {
             NavigationView {
-                HabitEditView(habit: $newHabit)
+                HabitEditView(habit: $newHabit, onDelete: nil)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
                             Button("Dismiss") {
                                 isPresentingNewHabitView = false
-                                newHabit = Habit()
+                                newHabit = Habit() // Reset
                             }
                         }
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Add") {
                                 habits.append(newHabit)
                                 isPresentingNewHabitView = false
-                                newHabit = Habit()
+                                newHabit = Habit() // Reset
                             }
+                            .disabled(newHabit.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) // Disable if name is empty
                         }
                     }
+                    .navigationTitle("New Habit")
+                    .navigationBarTitleDisplayMode(.inline)
             }
         }
         .sheet(isPresented: $isPresentingSettingsView) {
-            NavigationView {
-                            SettingsView2() // Replace with actual settings view
-                    .toolbar {
-                        ToolbarItem(placement: .confirmationAction) {
-                            Button("Done") {
-                                isPresentingNewHabitView = false
-                            }
-                        }
-                    }
-            }
-        }
+             NavigationView {
+                 SettingsView2() // Replace with actual settings view
+                     .toolbar {
+                         ToolbarItem(placement: .confirmationAction) {
+                             Button("Done") {
+                                 isPresentingSettingsView = false // Corrected state variable
+                             }
+                         }
+                     }
+                     .navigationTitle("Settings") // Add title
+                     .navigationBarTitleDisplayMode(.inline)
+             }
+         }
         .onChange(of: scenePhase) { phase in
             if phase == .inactive { saveAction() }
         }
@@ -101,6 +107,13 @@ struct HabitsView: View {
 
     func move(from source: IndexSet, to destination: Int) {
         habits.move(fromOffsets: source, toOffset: destination )
+    }
+
+    // Function to delete a habit using its object (passed down)
+    private func deleteHabit(habitToDelete: Habit) {
+        habits.removeAll { $0.id == habitToDelete.id }
+        // No need to call saveAction here explicitly, rely on scenePhase or call if immediate save is desired
+        // saveAction()
     }
 }
 
@@ -111,4 +124,3 @@ struct HabitsView_Previews: PreviewProvider {
         }
     }
 }
-

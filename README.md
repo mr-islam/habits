@@ -10,7 +10,6 @@ Loop Habit Tracker iOS, a mobile app for creating and maintaining long-term posi
 ## Intro
 Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore` docs.
 
-
 ## New Plans
 ### Core
 - [ ] Notifications for habits
@@ -20,15 +19,18 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [ ] Support landscape with extra days displayed (or maybe make the number of day a dynamic thing based on screen size)
 - [ ] Icon
 - [ ] App title and branding
-- [ ] add delete habit function (on edit page)
 
 ### Later
 - [ ] Add filters for the habits (archived or not, not done today or not)
 - [ ] Localization support i18n
 - [ ] Custom number habits not just binary
-- [ ] Skip options
+- [ ] Skip support for habit instance
 - [ ] Options screen and about together
 - [ ] Fix calendar on habit details screen
+- [ ] Handle onboarding with epxlanations
+- [ ] Handle empty habits screen (ie. no habits) - maybe start with sample habit?
+- [ ] Update screenshots
+- [ ] Prep for app store
 
 ### Really later
 - [ ] Support archiving habits
@@ -45,6 +47,7 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [x] Set it to be 5 days on portait (or dynamic?)
 - [x] Make the Main title "Habits" nicer
 - [x] Fix dark mode text being black
+- [x] add delete habit function (on edit page)
 
 ## License
 

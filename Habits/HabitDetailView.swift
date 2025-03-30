@@ -1,11 +1,12 @@
 import SwiftUI
 
 struct HabitDetailView: View {
-    @State private var updateHabit: Habit = Habit()
     @State private var isPresentingEditView = false
-    
     @Binding var habit: Habit
-    
+    @Environment(\.dismiss) var dismiss
+
+    var onDeleteHabit: (Habit) -> Void
+
     var body: some View {
         List {
             Section(header: Text("Overview")) {
@@ -13,70 +14,77 @@ struct HabitDetailView: View {
                     Label("Score", systemImage: "gamecontroller")
                     Spacer()
                     Text("\(habit.computeScore(), specifier: "%.1f")%")
-                        .padding(4)
-                        .cornerRadius(4)
                 }
                 .foregroundColor(habit.uiColor)
+
                 HStack {
                     Label("Month", systemImage: "goforward.30")
                     Spacer()
                     Text("\(habit.entryCount(.month))")
-                        .padding(4)
-                        .cornerRadius(4)
                 }
                 .foregroundColor(habit.uiColor)
+
                 HStack {
                     Label("Year", systemImage: "calendar")
                     Spacer()
                     Text("\(habit.entryCount(.year))")
-                        .padding(4)
-                        .cornerRadius(4)
                 }
                 .foregroundColor(habit.uiColor)
+
                 HStack {
                     Label("Total", systemImage: "a.circle")
                     Spacer()
                     Text("\(habit.entryCount(nil))")
-                        .padding(4)
-                        .cornerRadius(4)
                 }
                 .foregroundColor(habit.uiColor)
             }
             Section(header: Text("Score")) {
                 ScoreChartView(habit: habit)
                     .frame(minHeight: 200)
-                    .foregroundColor(habit.uiColor)
+                    .foregroundColor(habit.uiColor) // Color should be handled within ScoreChartView ideally
             }
             Section(header: Text("History")) {
                 HistoryChartView(habit: habit)
                     .frame(minHeight: 250)
-                    .foregroundColor(habit.uiColor)
+                    .foregroundColor(habit.uiColor) // Color should be handled within HistoryChartView ideally
             }
             Section(header: Text("Calendar")) {
+                Text("Calendar Placeholder")
             }
         }
         .navigationTitle(habit.name)
         .toolbar {
             Button("Edit") {
                 isPresentingEditView = true
-                updateHabit = habit
             }
         }
         .sheet(isPresented: $isPresentingEditView) {
             NavigationView {
-                HabitEditView(habit: $updateHabit)
-                    .navigationTitle(habit.name)
+                // Create a temporary binding for the edit view
+                // to allow cancellation without modifying the original 'habit' immediately
+                HabitEditView(habit: $habit,
+                              onDelete: {
+                                  onDeleteHabit(habit)
+                                  isPresentingEditView = false
+                                  dismiss()
+                              })
+                    .navigationTitle("Edit Habit")
+                    .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
                             Button("Cancel") {
                                 isPresentingEditView = false
+                                // No need to revert changes if using binding directly
+                                // and only saving on "Done"
                             }
                         }
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Done") {
                                 isPresentingEditView = false
-                                habit.update(from: updateHabit)
+                                // Changes are already in 'habit' via binding
+                                // No need for habit.update(from: updateHabit)
                             }
+                            .disabled(habit.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty) // Disable if name is empty
                         }
                     }
             }
@@ -87,7 +95,8 @@ struct HabitDetailView: View {
 struct HabitDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            HabitDetailView(habit: .constant(Habit.sampleData[0]))
+            // Provide a dummy delete function for the preview
+            HabitDetailView(habit: .constant(Habit.sampleData[0]), onDeleteHabit: { _ in print("Delete triggered in preview") })
         }
     }
 }
