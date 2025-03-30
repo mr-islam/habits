@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260EEDC92D980B9200C74C90 /* SettingsView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260EEDC82D980B9200C74C90 /* SettingsView2.swift */; };
 		BC025C5728DE3CDC00E55CF0 /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC025C5628DE3CDC00E55CF0 /* HistoryChartView.swift */; };
 		BC50DD2128D3AC33000A632F /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50DD2028D3AC33000A632F /* HabitStore.swift */; };
 		BC50DD2528D5C83A000A632F /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC50DD2428D5C83A000A632F /* Entry.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		260EEDC82D980B9200C74C90 /* SettingsView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView2.swift; sourceTree = "<group>"; };
 		BC025C5628DE3CDC00E55CF0 /* HistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChartView.swift; sourceTree = "<group>"; };
 		BC50DD2028D3AC33000A632F /* HabitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStore.swift; sourceTree = "<group>"; };
 		BC50DD2428D5C83A000A632F /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				BC5A3BD728CDF4B800CAF319 /* HabitSummaryView.swift */,
 				BC5A3BDB28CE137B00CAF319 /* HabitDetailView.swift */,
 				BC5A3BDD28CE161000CAF319 /* HabitEditView.swift */,
+				260EEDC82D980B9200C74C90 /* SettingsView2.swift */,
 				BC025C5628DE3CDC00E55CF0 /* HistoryChartView.swift */,
 				BCC3857D28DF255E00DB8E49 /* ScoreChartView.swift */,
 				BCD3693228CCADD400B48135 /* Assets.xcassets */,
@@ -303,6 +306,7 @@
 				BCC3857A28DF1A9D00DB8E49 /* ChartEntry.swift in Sources */,
 				BC5A3BD628CDF44700CAF319 /* HabitsView.swift in Sources */,
 				BCC3857E28DF255E00DB8E49 /* ScoreChartView.swift in Sources */,
+				260EEDC92D980B9200C74C90 /* SettingsView2.swift in Sources */,
 				BC5A3BD828CDF4B800CAF319 /* HabitSummaryView.swift in Sources */,
 				BC025C5728DE3CDC00E55CF0 /* HistoryChartView.swift in Sources */,
 				BC50DD2528D5C83A000A632F /* Entry.swift in Sources */,
@@ -467,8 +471,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Habits/Preview Content\"";
+				DEVELOPMENT_TEAM = Q43P27M54X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Wird;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -479,7 +486,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.github.aint.Habits;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.sufone.wird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -495,8 +502,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Habits/Preview Content\"";
+				DEVELOPMENT_TEAM = Q43P27M54X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Wird;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -507,7 +517,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.github.aint.Habits;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.sufone.wird;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
