@@ -1,4 +1,5 @@
 import Foundation
+import UIKit // Import UIKit for UINotificationFeedbackGenerator
 
 extension Date {
 
@@ -65,4 +66,35 @@ struct Constants {
     struct Settings {
         static let datesAppearReversedKey = "datesAppearReversed" // Key for UserDefaults
     }
+}
+
+struct HapticFeedback {
+    /**
+     Plays a light impact haptic feedback. Best for selection changes or confirming minor actions.
+     */
+    static func playLightImpact() {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.prepare() // Prepare the engine (optional but good practice)
+        generator.impactOccurred()
+    }
+
+    /**
+     Plays a success haptic feedback. Use for confirming successful completion of a task.
+     */
+    static func playSuccess() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.prepare()
+        generator.notificationOccurred(.success)
+    }
+
+     /**
+      Plays a soft impact haptic feedback. Softer than .light.
+      */
+     static func playSoftImpact() {
+         let generator = UIImpactFeedbackGenerator(style: .soft)
+         generator.prepare()
+         generator.impactOccurred()
+     }
+
+    // Add other feedback types like .medium, .heavy, .error, .warning as needed
 }

@@ -38,7 +38,10 @@ struct HabitSummaryView: View {
                         .frame(maxWidth: geometry.size.width * dateColumnProportion,
                                maxHeight: iconMaxHeight)
                         .frame(width: geometry.size.width * dateColumnProportion)
-                        .onTapGesture { toggleEntry(for: date) }
+                        .onTapGesture {
+                            HapticFeedback.playLightImpact() // <<< Trigger haptic feedback
+                            toggleEntry(for: date)
+                        }
                         .accessibilityLabel(getAccessibilityLabel(for: date))
                         .foregroundColor(isChecked ? habit.uiColor : Color.secondary)
                         .fontWeight(isChecked ? .bold : .regular)
