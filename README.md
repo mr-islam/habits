@@ -20,7 +20,6 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [ ] move completed habits to bottom
 - [ ] upload to app store
 - [ ] import and export habit data
-- [ ] make the xs smaller and non colored, like loop
 
 ### Later
 - [ ] Localization support i18n
@@ -63,6 +62,7 @@ Looks like this is SwitftUI, since the reference in xcode opens the `SwiftUICore
 - [x] App title and branding
 - [x] Options screen and about together
 - [x] Simple Notifications for habits
+- [x] make the xs smaller and non colored, like loop
 
 ## License
 

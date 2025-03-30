@@ -12,7 +12,8 @@ struct HabitSummaryView: View {
     private let dateColumnProportion: CGFloat = 0.1
     private let dateColumnCount: Int = 5
     private let iconMaxHeight: CGFloat = 14 // resize icons with this
-    
+    private let negativeIconScale: CGFloat = 0.8 // Scale factor for the 'X' mark (e.g., 80%)
+
     var body: some View {
         GeometryReader { geometry in
             HStack(spacing: 0) {
@@ -29,7 +30,7 @@ struct HabitSummaryView: View {
                 
                 ForEach(displayDates, id: \.self) { date in
                     let iconName = getIconForDate(date) // Determine icon name
-                    let isChecked = (iconName == HabitSummaryView.positiveIcon) // Check if it's the positive icon
+                    let isChecked = (iconName == HabitSummaryView.positiveIcon)
                     
                     Image(systemName: getIconForDate(date))
                         .resizable()
@@ -37,10 +38,12 @@ struct HabitSummaryView: View {
                         .frame(maxWidth: geometry.size.width * dateColumnProportion,
                                maxHeight: iconMaxHeight)
                         .frame(width: geometry.size.width * dateColumnProportion)
-                        .foregroundColor(isChecked ? habit.uiColor : Color.secondary) // <<< HERE
                         .onTapGesture { toggleEntry(for: date) }
                         .accessibilityLabel(getAccessibilityLabel(for: date))
-                    .fontWeight(.semibold)                }
+                        .foregroundColor(isChecked ? habit.uiColor : Color.secondary)
+                        .fontWeight(isChecked ? .bold : .regular)
+                        .scaleEffect(isChecked ? 1.0 : negativeIconScale)
+                }
             }
             .frame(height: geometry.size.height)
             
