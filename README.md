@@ -1,6 +1,6 @@
 # Wird Habit Tracker iOS
 
-A port(-ish) of Loop Habit Tracker iOS, a mobile app for creating and maintaining long-term positive habits. It's the iOS version of [Loop Habit Tracker](https://github.com/iSoron/uhabits) for Android.
+A habit tracker inspired by the amazing Loop Habit Tracker on Android, a mobile app for creating and maintaining long-term positive habits. 
 
 <p align="center">
   <img src="./Screenshots/screenshot1.png?raw=true" width="350"/>
